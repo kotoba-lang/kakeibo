@@ -19,6 +19,16 @@
   (is (= [[:issue/id "a"]]
          (:issue/blocked-by (second (topology/datoms graph))))))
 
+(deftest forge-projections-become-queryable-datoms
+  (let [projected
+        (assoc-in graph [:topology/issues 0 :issue/projections]
+                  {:radicle {:id "rad-1"}
+                   :github {:id 7}})
+        entity (first (topology/datoms projected))]
+    (is (= "rad-1" (:issue/radicle-id entity)))
+    (is (= 7 (:issue/github-number entity)))
+    (is (not (contains? entity :issue/projections)))))
+
 (deftest completed-blockers-unlock-the-next-issue
   (let [advanced (update-in graph [:topology/issues 0]
                             assoc :issue/status :integrated)]

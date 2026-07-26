@@ -60,8 +60,15 @@
   can run the queries embedded in the roadmap EDN directly."
   [topology]
   (mapv (fn [issue]
-          (-> issue
-              (update :issue/blocked-by
-                      #(mapv (fn [id] [:issue/id id]) %))
-              (dissoc :issue/outcomes)))
+          (let [projections (:issue/projections issue)]
+            (cond-> (-> issue
+                        (update :issue/blocked-by
+                                #(mapv (fn [id] [:issue/id id]) %))
+                        (dissoc :issue/outcomes :issue/projections))
+              (get-in projections [:radicle :id])
+              (assoc :issue/radicle-id
+                     (get-in projections [:radicle :id]))
+              (get-in projections [:github :id])
+              (assoc :issue/github-number
+                     (get-in projections [:github :id])))))
         (:topology/issues topology)))
