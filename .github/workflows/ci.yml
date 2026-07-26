@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # kakeibo projects onto kotoba-lang/banking's ledger contract, so the
+      # sibling checkout is part of the test environment, not an optional extra.
+      - uses: actions/checkout@v4
+        with:
+          path: kakeibo
+      - uses: actions/checkout@v4
+        with:
+          repository: kotoba-lang/banking
+          path: banking
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - run: npm install -g nbb@1.4.210
+
+      # Both gates exit non-zero on failure, so neither step parses output.
+      - name: nbb test suite
+        working-directory: kakeibo
+        run: nbb --classpath "src:test:resources:../banking/src" test/run_tests.cljs
+
+      - name: CLI exit-code contract
+        working-directory: kakeibo
+        run: nbb --classpath "src:bin:resources:../banking/src" test/cli_contract.cljs

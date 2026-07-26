@@ -1,0 +1,4 @@
+{:paths ["src" "bin" "resources"]
+ :deps {io.github.kotoba-lang/banking {:local/root "../banking"}}
+ :aliases
+ {:test {:extra-paths ["test"]}}}
