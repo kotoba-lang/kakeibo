@@ -1,0 +1,91 @@
+{:topology/id :itonami-kaikei
+ :topology/version 1
+ :topology/title "Itonami Kaikei"
+ :topology/objective "Provide trustworthy local-first accounting for people and organizations."
+ :topology/operator :cloud-itonami
+ :topology/implementation-org :kotoba-lang
+ :topology/issue-authority :radicle
+ :topology/radicle-repo "rad:z49fRHLK8QqopZhCNdbTWCD8WLpxF"
+ :topology/schema
+ {:issue/id {:db/unique :db.unique/identity}
+  :issue/blocked-by {:db/valueType :db.type/ref
+                     :db/cardinality :db.cardinality/many}
+  :issue/project {:db/cardinality :db.cardinality/one}
+  :issue/status {:db/cardinality :db.cardinality/one}}
+ :topology/queries
+ {:open-roots
+  [:find ?id
+   :where
+   [?e :issue/id ?id]
+   [?e :issue/status :open]
+   (not [?e :issue/blocked-by _])]
+  :blocked-edges
+  [:find ?issue ?blocker
+   :where
+   [?e :issue/id ?issue]
+   [?e :issue/blocked-by ?b]
+   [?b :issue/id ?blocker]]
+  :project-work
+  [:find ?id ?status
+   :in $ ?project
+   :where
+   [?e :issue/id ?id]
+   [?e :issue/project ?project]
+   [?e :issue/status ?status]]}
+ :topology/issues
+ [{:issue/id "3e7b150d7d07d4b31a9f65a48ab50d7c9d9eead8"
+   :issue/title "Define multi-entity accounting domain and immutable journal contract"
+   :issue/status :open
+   :issue/project "orgs/kotoba-lang/kakeibo"
+   :issue/layer :foundation
+   :issue/priority :p0
+   :issue/blocked-by []
+   :issue/outcomes [:entity-model :chart-of-accounts :immutable-journal
+                    :currency-and-crypto-valuation-provenance]}
+  {:issue/id "5c1a09b0d9e2fe8c8bd246cfce33ba60d207432b"
+   :issue/title "Build account connection registry and normalized financial ingest"
+   :issue/status :open
+   :issue/project "orgs/kotoba-lang/statement-fetch"
+   :issue/layer :ingest
+   :issue/priority :p0
+   :issue/blocked-by ["3e7b150d7d07d4b31a9f65a48ab50d7c9d9eead8"]
+   :issue/outcomes [:connection-registry :normalized-facts :reconciliation-counts]}
+  {:issue/id "39ba6c993bf58d85d69822ce664c19a067f8cb33"
+   :issue/title "Implement journals, reconciliation, closing, P/L, B/S and cash flow"
+   :issue/status :open
+   :issue/project "orgs/kotoba-lang/kakeibo"
+   :issue/layer :accounting
+   :issue/priority :p0
+   :issue/blocked-by ["3e7b150d7d07d4b31a9f65a48ab50d7c9d9eead8"
+                      "5c1a09b0d9e2fe8c8bd246cfce33ba60d207432b"]
+   :issue/outcomes [:journal-review :bank-reconciliation :period-close
+                    :profit-and-loss :balance-sheet :cash-flow]}
+  {:issue/id "80e81a8dd467eeb1085e246e4916143cfbfeeb4d"
+   :issue/title "Add invoices, expenses, receipts, tax evidence and approval workflows"
+   :issue/status :open
+   :issue/project "orgs/kotoba-lang/kakeibo"
+   :issue/layer :operations
+   :issue/priority :p1
+   :issue/blocked-by ["39ba6c993bf58d85d69822ce664c19a067f8cb33"]
+   :issue/outcomes [:invoice-lifecycle :expense-claims :receipt-evidence
+                    :receivables :payables :tax-evidence :approval-separation]}
+  {:issue/id "0841a537d08a1aea81470d0b3a667d1da7f489c7"
+   :issue/title "Design multi-tenant accounting API, passkey auth and authority boundaries"
+   :issue/status :open
+   :issue/project "orgs/gftdcojp/cloud-itonami"
+   :issue/layer :platform
+   :issue/priority :p1
+   :issue/blocked-by ["3e7b150d7d07d4b31a9f65a48ab50d7c9d9eead8"
+                      "39ba6c993bf58d85d69822ce664c19a067f8cb33"]
+   :issue/outcomes [:tenant-isolation :passkey-auth :accountant-delegation
+                    :audit-events :encryption-and-key-rotation]}
+  {:issue/id "49ff316bed59e457b70755b2d530146c9ea0c23a"
+   :issue/title "Ship Itonami Kaikei product UI, onboarding and Tamaki finance loop"
+   :issue/status :open
+   :issue/project "orgs/kotoba-lang/shell"
+   :issue/layer :product
+   :issue/priority :p1
+   :issue/blocked-by ["80e81a8dd467eeb1085e246e4916143cfbfeeb4d"
+                      "0841a537d08a1aea81470d0b3a667d1da7f489c7"]
+   :issue/outcomes [:one-screen-workspace :connection-onboarding
+                    :journal-inbox :finance-dashboard :visual-verification]}]}

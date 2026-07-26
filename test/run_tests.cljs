@@ -14,6 +14,7 @@
             [kakeibo.dedup-test]
             [kakeibo.category-test]
             [kakeibo.ledger-test]
+            [kakeibo.topology-test]
             [kakeibo.rollup-test]
             [kakeibo.core-test]))
 
@@ -29,5 +30,6 @@
              'kakeibo.dedup-test
              'kakeibo.category-test
              'kakeibo.ledger-test
+             'kakeibo.topology-test
              'kakeibo.rollup-test
              'kakeibo.core-test)

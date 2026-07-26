@@ -124,6 +124,21 @@ gitignored (`/data/`, `/out/`, `*.statement.edn`, `*.ledger.edn`). What lives
 in this repository is structure only: institution mappings carry column labels,
 not account numbers, balances or payees; fixtures under `test/` are invented.
 
+## Issue topology
+
+[`roadmaps/itonami-kaikei.edn`](roadmaps/itonami-kaikei.edn) is the canonical
+machine-readable roadmap. It owns issue state, dependency edges, projects,
+outcomes, stable issue IDs, the Datomic/DataScript schema, and the Datalog
+queries used to inspect the graph. Radicle issues are a public collaboration
+projection of those entities; they do not own the dependency graph.
+
+`kakeibo.topology/datoms` converts the roadmap into transaction data with
+`:issue/blocked-by` lookup refs. `topological-order` fails closed on cycles or
+missing blockers, while `runnable` returns only open nodes whose blockers are
+`:integrated` or `:closed`. Tamaki reads this same file before assigning work,
+so actor execution and graph visualization can share one topology rather than
+maintaining parallel blocker lists.
+
 ## Test
 
 ```sh
