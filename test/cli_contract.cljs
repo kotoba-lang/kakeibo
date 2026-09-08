@@ -10,7 +10,7 @@
 ;; real rather than calling into it, because the exit code is the thing under
 ;; test and only a subprocess has one.
 (ns cli-contract
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def fs (js/require "fs"))
 (def os (js/require "os"))

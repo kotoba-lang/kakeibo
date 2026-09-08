@@ -21,7 +21,7 @@
 ;; file error. A tick that partially failed must not look like a success.
 (ns kakeibo-cli
   (:require [clojure.edn :as edn]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kakeibo.core :as kakeibo]))
 
 (def fs (js/require "fs"))
