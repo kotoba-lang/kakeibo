@@ -22,7 +22,7 @@
   Identity is a readable tuple string, not a hash. A hash would need a hash
   function this library has no reason to own, and would make a mis-keyed
   transaction impossible to diagnose by reading it."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (defn content-key
   "Deterministic key for a transaction.

@@ -29,13 +29,13 @@
   `:description/regex` is compiled with the host's own regex engine, so keep
   patterns to the common subset — a pattern relying on Java-only or
   JavaScript-only syntax will behave differently across runtimes."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def uncategorized :uncategorized)
 
 (defn- match-contains? [needles haystack]
-  (let [h (str/lower-case (str haystack))]
-    (boolean (some (fn [n] (str/includes? h (str/lower-case (str n))))
+  (let [h (str/lower (str haystack))]
+    (boolean (some (fn [n] (str/includes? h (str/lower (str n))))
                    needles))))
 
 (defn- match-regex? [pattern haystack]

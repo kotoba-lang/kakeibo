@@ -16,7 +16,7 @@
   - **Fail closed.** Anything not understood returns a problem map rather
     than `nil` or `0`. A statement line silently read as zero is worse than a
     rejected batch: it understates spending and nothing surfaces the loss."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ---------------------------------------------------------------------------
 ;; Width / sign normalization
