@@ -13,7 +13,7 @@
   under `:kakeibo/rejected` with the reason and the original row attached, so
   \"nothing spent\" and \"could not read\" never render the same — the rule
   `kotoba-lang/macos-inventory` states for probes, applied to money."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kakeibo.amount :as amount]))
 
 ;; ---------------------------------------------------------------------------
