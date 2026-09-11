@@ -1,7 +1,7 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; The CLI's exit-code contract, as an executable test.
 ;;
-;;   nbb --classpath "src:bin:resources:../banking/src" test/cli_contract.cljk
+;;   kbb --backend sci --classpath "src:bin:resources:../banking/src" test/cli_contract.cljk
 ;;
 ;; `bin/kakeibo.cljk` is meant to run under `tamaki exec`, which records the
 ;; subprocess's real exit code as the run's outcome. So "not clean" must be a
