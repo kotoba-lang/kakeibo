@@ -45,7 +45,7 @@ how much was spent.
 As a tick:
 
 ```sh
-nbb --classpath "src:bin:resources:../banking/src" bin/kakeibo.cljs ingest \
+nbb --classpath "src:bin:resources:../banking/src" bin/kakeibo.cljk ingest \
   --mapping resources/mappings/jp-rakuten-bank.transaction-detail-ja.edn \
   --rules   resources/rules/example-categories.edn \
   --rows    data/2026-07.rows.edn \
@@ -144,7 +144,7 @@ maintaining parallel blocker lists.
 ```sh
 npm test
 # or
-nbb --classpath "src:test:resources:../banking/src" test/run_tests.cljs
+nbb --classpath "src:test:resources:../banking/src" test/run_tests.cljk
 ```
 
 nbb is the gate — ClojureScript-on-Node is this repository's first-class

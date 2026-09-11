@@ -1,9 +1,9 @@
 #!/usr/bin/env nbb
 ;; The CLI's exit-code contract, as an executable test.
 ;;
-;;   nbb --classpath "src:bin:resources:../banking/src" test/cli_contract.cljs
+;;   nbb --classpath "src:bin:resources:../banking/src" test/cli_contract.cljk
 ;;
-;; `bin/kakeibo.cljs` is meant to run under `tamaki exec`, which records the
+;; `bin/kakeibo.cljk` is meant to run under `tamaki exec`, which records the
 ;; subprocess's real exit code as the run's outcome. So "not clean" must be a
 ;; non-zero exit and not a footnote in the output — otherwise a half-broken
 ;; ingest registers as a succeeded AgentRun forever. This spawns the CLI for
@@ -40,7 +40,7 @@
 
 (defn- run-cli [args]
   (let [r (.spawnSync cp "nbb"
-                      (clj->js (concat ["--classpath" classpath "bin/kakeibo.cljs"] args))
+                      (clj->js (concat ["--classpath" classpath "bin/kakeibo.cljk"] args))
                       #js {:encoding "utf8"})]
     {:status (.-status r)
      :out (str (.-stdout r)) :err (str (.-stderr r))}))
