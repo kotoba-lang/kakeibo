@@ -28,8 +28,8 @@ jobs:
       # Both gates exit non-zero on failure, so neither step parses output.
       - name: nbb test suite
         working-directory: kakeibo
-        run: nbb --classpath "src:test:resources:../banking/src" test/run_tests.cljs
+        run: nbb --classpath "src:test:resources:../banking/src" test/run_tests.cljk
 
       - name: CLI exit-code contract
         working-directory: kakeibo
-        run: nbb --classpath "src:bin:resources:../banking/src" test/cli_contract.cljs
+        run: nbb --classpath "src:bin:resources:../banking/src" test/cli_contract.cljk
