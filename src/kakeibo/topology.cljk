@@ -1,7 +1,7 @@
 (ns kakeibo.topology
   "Query-neutral issue topology projection. EDN is canonical; forge issues are
   projections carrying the same stable :issue/id."
-  (:require [clojure.set :as set]))
+  (:require [kotoba.lang.coll :as set]))
 
 (defn issue-index [topology]
   (into {} (map (juxt :issue/id identity)) (:topology/issues topology)))
