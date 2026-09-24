@@ -1,5 +1,5 @@
 (ns kakeibo.dedup-test
-  (:require #?(:clj [clojure.test :refer [deftest is testing]]
+  (:require #?(:clj [kotoba.test :refer [deftest is testing]]
                :cljs [cljs.test :refer [deftest is testing]])
             [kakeibo.dedup :as dedup]))
 
