@@ -20,7 +20,7 @@
 ;; transaction was unpostable, or the mapping did not validate; 2 on a usage or
 ;; file error. A tick that partially failed must not look like a success.
 (ns kakeibo-cli
-  (:require [clojure.edn :as edn]
+  (:require [kotoba.lang.edn :as edn]
             [kotoba.lang.text :as str]
             [kakeibo.core :as kakeibo]))
 
