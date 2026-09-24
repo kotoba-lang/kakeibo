@@ -1,6 +1,6 @@
 (ns kakeibo.domain-test
   "Invented fixtures only — no real financial data, credentials, or tenant ids."
-  (:require #?(:clj [clojure.test :refer [deftest is testing]]
+  (:require #?(:clj [kotoba.test :refer [deftest is testing]]
                :cljs [cljs.test :refer [deftest is testing]])
             [kakeibo.domain :as d]
             [kotoba.banking :as banking]))
