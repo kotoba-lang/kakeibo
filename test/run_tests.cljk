@@ -1,6 +1,6 @@
 #!/usr/bin/env kbb
 ;; nbb test runner. ClojureScript-on-Node is kakeibo's first-class runtime
-;; (CLAUDE.md runtime priority: kotoba wasm > clojurewasm > ClojureScript >
+;; (AGENTS.md runtime priority: kotoba wasm > clojurewasm > ClojureScript >
 ;; nbb, with the JVM last), so this — not a JVM suite — is the gate.
 ;;
 ;;   kbb --backend sci --classpath "src:test:../banking/src" test/run_tests.cljk
